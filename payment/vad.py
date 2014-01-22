@@ -35,6 +35,7 @@ class PaymentFormManager:
 
     def request_payment_from_ws(self, charge):
         signature = charge.site_id() + '+' + charge.trans_id + '+' + str(1) + '+' + TEST_STR + '+' + charge.site_key()
+        # Try a cleaner method
         ws_format_trans_date = charge.trans_date[0:4] + '-' + charge.trans_date[4:6] + '-' + charge.trans_date[6:8] \
                                + 'T' + charge.trans_date[8:10] + ':' + charge.trans_date[10:12] + ':' \
                                + charge.trans_date[12:14] + '+00:00'
