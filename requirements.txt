@@ -1,0 +1,16 @@
+Django==1.6.1
+Markdown==2.3.1
+Pygments==1.6
+Unipath==1.0
+dj-database-url==0.2.2
+dj-static==0.0.5
+django-filter==0.7
+django-rest-swagger==0.1.11
+django-toolbelt==0.0.1
+djangorestframework==2.3.12
+gunicorn==18.0
+psycopg2==2.5.2
+pystache==0.5.3
+static==1.0.2
+suds-jurko==0.5
+urllib3==1.7.1
