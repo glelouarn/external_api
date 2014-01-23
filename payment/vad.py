@@ -1,11 +1,12 @@
 import hashlib
 import json
 
-import urllib3
+import urllib
+import urllib2
 from suds.client import Client
 
 
-SERVER_URL = 'http://payzen.serafina.lyra-network.com/'
+SERVER_URL = 'https://payzen.lyra-labs.fr/'
 PAYMENT_URL = SERVER_URL + 'vads-payment/'
 ORDER_URL = PAYMENT_URL + 'service/order?cacheId='
 WS_URL = SERVER_URL + 'vads-ws/v4?wsdl'
@@ -31,7 +32,10 @@ class PaymentFormManager:
             signature += params[f] + '+'
         params['signature'] = hashlib.sha1((signature + charge.site_key()).encode('utf-8')).hexdigest()
 
-        return urllib3.PoolManager().request('POST', PAYMENT_URL, fields=params).status
+        req = urllib2.Request(PAYMENT_URL, urllib.urlencode(params))
+        return urllib2.urlopen(req).code
+        #No compatible with python 2.7
+        #return  urllib3.PoolManager().request('POST', PAYMENT_URL, fields=params).status
 
     def request_payment_from_ws(self, charge):
         signature = charge.site_id() + '+' + charge.trans_id + '+' + str(1) + '+' + TEST_STR + '+' + charge.site_key()
@@ -47,9 +51,12 @@ class PaymentFormManager:
 
 
     def request_payment_context(self, charge):
-        response = urllib3.PoolManager().request('GET', ORDER_URL + charge.cache_id())
+        req = urllib2.Request(ORDER_URL + charge.cache_id())
+        response = urllib2.urlopen(req)
+        #No compatible with python 2.7
+        #response = urllib3.PoolManager().request('GET', ORDER_URL + charge.cache_id())
         try:
-            jsonconent = json.loads(str(response.data, 'UTF-8'))
+            jsonconent = json.loads(str(response.read()), 'UTF-8')
             return jsonconent
         except ValueError:
             pass
