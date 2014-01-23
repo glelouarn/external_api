@@ -1,9 +1,13 @@
 import hashlib
 import json
-
 import urllib
-import urllib2
+
 from suds.client import Client
+
+try:
+    import urllib.request as compat_urllib
+except ImportError: # Python 2
+    import urllib2 as compat_urllib
 
 
 SERVER_URL = 'https://payzen.lyra-labs.fr/'
@@ -32,8 +36,8 @@ class PaymentFormManager:
             signature += params[f] + '+'
         params['signature'] = hashlib.sha1((signature + charge.site_key()).encode('utf-8')).hexdigest()
 
-        req = urllib2.Request(PAYMENT_URL, urllib.urlencode(params))
-        return urllib2.urlopen(req).code
+        req = compat_urllib.Request(PAYMENT_URL, urllib.urlencode(params))
+        return compat_urllib.urlopen(req).code
         #No compatible with python 2.7
         #return  urllib3.PoolManager().request('POST', PAYMENT_URL, fields=params).status
 
@@ -51,8 +55,8 @@ class PaymentFormManager:
 
 
     def request_payment_context(self, charge):
-        req = urllib2.Request(ORDER_URL + charge.cache_id())
-        response = urllib2.urlopen(req)
+        req = compat_urllib.Request(ORDER_URL + charge.cache_id())
+        response = compat_urllib.urlopen(req)
         #No compatible with python 2.7
         #response = urllib3.PoolManager().request('GET', ORDER_URL + charge.cache_id())
         try:
