@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74ef75a5-dce1-4abe-9796-5a7f9cde746a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/external_api/wsgi.py" afterPath="$PROJECT_DIR$/external_api/wsgi.py" />
+    <list default="true" id="74ef75a5-dce1-4abe-9796-5a7f9cde746a" name="Default" comment="To deploy on Heroku">
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\dataSources.ids" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\dataSources.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\external_api.iml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\PycharmProjects\external_api\.idea\workspace.xml" afterPath="" />
     </list>
     <ignored path="external_api.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,13 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wsgi.py">
+      <file leaf-file-name="Procfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="79" selection-end="122" vertical-scroll-proportion="0.091726616" vertical-offset="0" max-vertical-offset="556">
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
+            <state line="0" column="31" selection-start="31" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="842">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -599,7 +604,15 @@
       <created>1390489169655</created>
       <updated>1390489169655</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="To deploy on Heroku">
+      <created>1390489664961</created>
+      <updated>1390489664961</updated>
+    </task>
+    <task id="LOCAL-00006" summary="To deploy on Heroku">
+      <created>1390489772082</created>
+      <updated>1390489772082</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -608,7 +621,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32949308" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39976957" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -737,12 +750,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="79" selection-end="122" vertical-scroll-proportion="0.091726616" vertical-offset="0" max-vertical-offset="556">
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
+        <state line="0" column="31" selection-start="31" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="842">
+          <folding />
         </state>
       </provider>
     </entry>
