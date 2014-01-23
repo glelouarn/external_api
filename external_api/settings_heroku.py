@@ -64,13 +64,13 @@ WSGI_APPLICATION = 'external_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'da561abahd6q50',
-        'USER': 'qwisitrckvxwpj',
-        'PASSWORD': 'QDvNbqiXrY-YFaJIJfY5rn-Yya',
         'HOST': 'ec2-54-204-43-200.compute-1.amazonaws.com',
-        'PORT': '5432',
-    },
+        'PORT': 5432,
+        'USER': 'qwisitrckvxwpj',
+        'PASSWORD': 'QDvNbqiXrY-YFaJIJfY5rn-Yya'
+  }
 }
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
