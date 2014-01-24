@@ -3,6 +3,7 @@ import json
 
 import urllib3
 from suds.client import Client
+from datetime import datetime
 
 
 SERVER_URL = 'https://payzen.lyra-labs.fr/'
@@ -35,10 +36,8 @@ class PaymentFormManager:
 
     def request_payment_from_ws(self, charge):
         signature = charge.site_id() + '+' + charge.trans_id + '+' + str(1) + '+' + TEST_STR + '+' + charge.site_key()
-        # Try a cleaner method
-        ws_format_trans_date = charge.trans_date[0:4] + '-' + charge.trans_date[4:6] + '-' + charge.trans_date[6:8] \
-                               + 'T' + charge.trans_date[8:10] + ':' + charge.trans_date[10:12] + ':' \
-                               + charge.trans_date[12:14] + '+00:00'
+        ws_format_trans_date = datetime.strptime(charge.trans_date, "%Y%m%d%H%M%S").strftime("%Y-%m-%dT%H:%M:%S+00:00")
+
         client = Client(WS_URL)
         print(client)
         return client.service.getInfo(charge.site_id(), ws_format_trans_date,
@@ -49,7 +48,7 @@ class PaymentFormManager:
     def request_payment_context(self, charge):
         response = urllib3.PoolManager().request('GET', ORDER_URL + charge.cache_id())
         try:
-            jsonconent = json.loads(str(response.data, 'UTF-8'))
+            jsonconent = json.loads(str(response.data), 'UTF-8')
             return jsonconent
         except ValueError:
             pass
