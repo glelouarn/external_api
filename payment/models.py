@@ -10,6 +10,15 @@ ORDER_STATUS = {'COMPLETE': 'complete', 'PENDING': 'pending', 'INCOMPLETE': 'inc
 TEST_ORDINAL = '0'
 
 
+class Instrument:
+    def __init__(self, method, card_number, cvv, exp_year, exp_month):
+        self.method = method
+        self.card_number = card_number
+        self.cvv = cvv
+        self.exp_year = exp_year
+        self.exp_month = exp_month
+
+
 class Charge(models.Model):
     status = models.CharField(max_length=20, default=ORDER_STATUS['INCOMPLETE'])
     amount = models.DecimalField(decimal_places=5, max_digits=14)
@@ -21,9 +30,15 @@ class Charge(models.Model):
     trans_id = models.CharField(max_length=6, serialize=False, null=True)
     trans_date = models.CharField(max_length=14, serialize=False, null=True)
 
+    def get_instruments(self):
+        return self._instruments
+    def set_instruments(self, value):
+        self._instruments = value
+    used_instruments = property(get_instruments, set_instruments)
+
     messages = []
     methods = []
-    instruments = []
+    _instruments = []
 
     def __init__(self, *args, **kwargs):
         models.Model.__init__(self, *args, **kwargs)
@@ -61,10 +76,7 @@ class Charge(models.Model):
 
     def update_from_payment(self, get_info_response):
         if get_info_response.errorCode == 0:
-            self.instruments = [{'method': get_info_response.cardInfo.cardBrand},
-                                {'card_number': get_info_response.cardInfo.cardNumber},
-                                {'expiry_month': str(get_info_response.cardInfo.expiryMonth)},
-                                {'expiry_year': str(get_info_response.cardInfo.expiryYear)}]
+            self._instruments = [Instrument(get_info_response.cardInfo.cardBrand, get_info_response.cardInfo.cardNumber, 123, get_info_response.cardInfo.expiryYear, get_info_response.cardInfo.expiryMonth)]
 
             if get_info_response.transactionStatus in (1, 4, 5, 6):
                 self.status = ORDER_STATUS['COMPLETE']
