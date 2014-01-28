@@ -60,6 +60,12 @@ class Charge(models.Model):
         else:
             self.status = ORDER_STATUS['CANCELLED']
 
+    def update_from_silent_form_submit(self, http_response):
+        if http_response == 200:
+            self.status = ORDER_STATUS['COMPLETE']
+        else:
+            self.status = ORDER_STATUS['CANCELLED']
+
     def update_from_context(self, context_json):
         del self.methods[:]
         del self.messages[:]
@@ -74,7 +80,7 @@ class Charge(models.Model):
                     self.messages = [{'title': 'PAYMENT_INSTRUMENT_REQUIRED'},
                                      {'description': 'Transaction is incomplete. No payment instrument was chosen.'}]
 
-    def update_from_payment(self, get_info_response):
+    def update_from_payment(self, get_info_response, save=True):
         if get_info_response.errorCode == 0:
             self._instruments = [Instrument(get_info_response.cardInfo.cardBrand, get_info_response.cardInfo.cardNumber, 123, get_info_response.cardInfo.expiryYear, get_info_response.cardInfo.expiryMonth)]
 
@@ -85,7 +91,9 @@ class Charge(models.Model):
 
             del self.messages[:]
             del self.methods[:]
-            self.save()
+
+            if save:
+                self.save()
 
     def site_id(self):
         return self.owner.username[0:8]

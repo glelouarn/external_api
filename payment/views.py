@@ -20,8 +20,12 @@ class ChargeCreate(generics.CreateAPIView):
     def pre_save(self, charge, **kwargs):
         # Not used: self.kwargs['pos_key']
         charge.owner = self.request.user
-        charge.update_from_form_submit(pm.submit_payment_form(charge))
-        charge.update_from_context(pm.request_payment_context(charge))
+        if (charge.used_instruments is not None) and (len(charge.used_instruments) > 0):
+            charge.update_from_silent_form_submit(pm.make_silent_payment(charge))
+            charge.update_from_payment(pm.request_payment_from_ws(charge), save=False)
+        else:
+            charge.update_from_form_submit(pm.submit_payment_form(charge))
+            charge.update_from_context(pm.request_payment_context(charge))
 
 
 class ChargeDetail(generics.RetrieveAPIView):
