@@ -6,7 +6,7 @@ import urllib3
 from suds.client import Client
 
 
-SERVER_URL = 'https://payzen.leon.lyra-network.com/'
+SERVER_URL = 'https://payzen.lyra-labs.fr/'
 PAYMENT_URL = SERVER_URL + 'vads-payment/'
 ORDER_URL = PAYMENT_URL + 'service/order?cacheId='
 WS_URL = SERVER_URL + 'vads-ws/v4?wsdl'

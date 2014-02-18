@@ -70,6 +70,7 @@ class Charge(models.Model):
         del self.methods[:]
         del self.messages[:]
 
+
         if self.status == ORDER_STATUS['PENDING']:
             if context_json is None:
                 self.status = ORDER_STATUS['CANCELLED']
