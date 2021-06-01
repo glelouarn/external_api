@@ -13,4 +13,4 @@ psycopg2==2.5.2
 pystache==0.5.3
 static==1.0.2
 suds-jurko==0.5
-urllib3==1.7.1
+urllib3==1.26.5
